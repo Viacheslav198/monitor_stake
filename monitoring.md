@@ -1,5 +1,15 @@
 # Monitoraggio del palo
 
+Per richiedere lo stato con un validatore, utilizzare Near-Shell o il metodo validatorsin RPC JSON:
+
+| Action | near-shell | validators JSON RPC |
+| ------ | ---------- | -------- |
+| current set (t0) | `near validators current` | `result.current_validators` |
+| next set (t+1) | `near validators next` | `result.next_validators` |
+| proposals (t+2) | `near proposals` | `result.current_proposals` |
+
+Dove, l' `t0` era attuale e l' `t+n` era del futuro.
+
 ## Monitoraggio degli attuali validatori con RPC
 
 Questo comando richiede che RPC JSON emetta il numero di token:
@@ -8,13 +18,13 @@ Questo comando richiede che RPC JSON emetta il numero di token:
 curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application / json' https : //rpc.betanet.near.org | jq -c '.result.current_validators [] | seleziona (.account_id | contiene ("<POOL_ID>")) '| jq .stake
 ```
 
-"method": "validators" - metodo
+`"method": "validators"` - metodo
 
-jq -c '.result.current_validators - visualizza i validatori correnti
+`jq -c '.result.current_validators` - visualizza i validatori correnti
 
-select(.account_id | contains ("<POOL_ID>"))' - filtraggio per <POOL_ID>
+`select(.account_id | contains ("<POOL_ID>"))'` - filtraggio per <POOL_ID>
 
-jq .stake - filtra nuovamente i risultati tramite jq e accetta solo la condivisione totale in YoctoNEAR
+`jq .stake` - filtra nuovamente i risultati tramite jq e accetta solo la condivisione totale in YoctoNEAR
 
 Rispetto a Near-Shell, questo metodo produce un numero più accurato di token Near nel pool. <POOL_ID>
 
@@ -57,9 +67,9 @@ La perdita minima consentita per blocco non supera il 10% del previsto!
 
 Simile ad altri comandi sopra:
 
- jq -c '.result.prev_epoch_kickout - filtro kickout precedente
+ `jq -c '.result.prev_epoch_kickout` - filtro kickout precedente
  
- jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
+ `jq .reason` - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
 
 
 ## Monitoraggio dei futuri validatori con near-shell
@@ -97,7 +107,7 @@ curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": 
 
 Questa query genererà un numero intero con il numero di blocco da cui è iniziata l'era corrente
 
-Per capire quanti blocchi restano da realizzare entro la fine del periodo, è necessario sottrarre <latest_block_height> dalla <epoch_start_height + 10000> e ottenere il numero di blocchi che devono ancora essere prodotte al fine di completare l'epoca.
+Per capire quanti blocchi restano da realizzare entro la fine del periodo, è necessario sottrarre `latest_block_height` dalla `epoch_start_height + 10000` e ottenere il numero di blocchi che devono ancora essere prodotte al fine di completare l'epoca.
 
 
 ## Posiziona il monitoraggio dei prezzi
