@@ -1,17 +1,3 @@
-# Monitoraggio degli attuali validatori con near-shell
-
-Visualizza il numero di token vicini in numeri interi:
-
-```
-vicino validatori correnti | awk '/ <POOL_ID> / {print $ 4}'
-```
-
-<POOL_ID> - piscina per picchetti
-
-near validators current - visualizza i validatori correnti
-
-awk '/<POOL_ID> {print $4}' - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
-
 # Monitoraggio degli attuali validatori con RPC
 
 Questo comando richiede che RPC JSON emetta il numero di token:
@@ -28,6 +14,22 @@ jq .stake - filtra nuovamente i risultati tramite jq e accetta solo la condivisi
 Rispetto a Near-Shell, questo metodo produce un numero più accurato di token Near nel pool. <POOL_ID>
 
 È possibile utilizzare un filtro simile per verificare se ci sarà un pool nei seguenti validatori o meno.
+
+
+# Monitoraggio degli attuali validatori con near-shell
+
+Visualizza il numero di token vicini in numeri interi:
+
+```
+vicino validatori correnti | awk '/ <POOL_ID> / {print $ 4}'
+```
+
+<POOL_ID> - piscina per picchetti
+
+near validators current - visualizza i validatori correnti
+
+awk '/<POOL_ID> {print $4}' - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
+
 
 # Monitoraggio dei futuri validatori con near-shell
 
@@ -46,6 +48,7 @@ proposte vicine | grep "Rollover" | grep "<POOL_ID>"
 ```
 
 Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
+
 
 # Monitoraggio dei futuri validatori tramite RPC
 
@@ -71,6 +74,7 @@ Simile ad altri comandi sopra:
 jq -c '.result.prev_epoch_kickout - filtro kickout precedente
 jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
 
+
 # Monitoraggio del progresso di un'era
 
 Determina l'altezza del blocco corrente:
@@ -88,6 +92,7 @@ curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": 
 Questa query genererà un numero intero con il numero di blocco da cui è iniziata l'era corrente
 
 Per capire quanti blocchi restano da realizzare entro la fine del periodo, è necessario sottrarre <latest_block_height> dalla <epoch_start_height + 10000> e ottenere il numero di blocchi che devono ancora essere prodotte al fine di completare l'epoca.
+
 
 # Posiziona il monitoraggio dei prezzi
 
