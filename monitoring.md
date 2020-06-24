@@ -109,6 +109,13 @@ Questa query genererà un numero intero con il numero di blocco da cui è inizia
 
 Per capire quanti blocchi restano da realizzare entro la fine del periodo, è necessario sottrarre `latest_block_height` dalla `epoch_start_height + 10000` e ottenere il numero di blocchi che devono ancora essere prodotte al fine di completare l'epoca.
 
+Il numero di blocchi nell'era per le reti Near:
+
+| Network | Epoch Blocks |
+| ------- | ------ |
+| BetaNet | 10,000 |
+| TestNet | 43,200 |
+| MainNet | 43,200 |
 
 ## Posiziona il monitoraggio dei prezzi
 
