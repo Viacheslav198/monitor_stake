@@ -54,7 +54,7 @@ Simile ai comandi sopra, usa il comando:
 curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.near.org | jq -c '.result.next_validators[] | select(.account_id | contains ("<POOL_ID>"))'
 ```
 
-Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e ne salverà il posto come validatore.
+Se l'output non è vuoto, <POOL_ID> avrà lo stato di Rollover e ne salverà il posto come validatore.
 Verranno visualizzate le seguenti informazioni: nome del pool, public_key, dimensione della bistecca e numero del frammento
 
 RPC fornisce dati di un'era precedente per esaminare i dati ricevuti e comprendere il motivo per cui il nodo non si trova negli attuali validatori:
@@ -88,7 +88,7 @@ In alternativa, è possibile utilizzare il comando:
 near proposals | grep "Rollover" | grep "<POOL_ID>"
 ```
 
-Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
+Se l'output non è vuoto, <POOL_ID> avrà lo stato di Rollover e salverà il suo posto come validatore
 
 
 ## Monitoraggio del progresso di un'era
