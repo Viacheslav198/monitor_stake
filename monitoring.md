@@ -39,11 +39,11 @@ Visualizza il numero di token vicini in numeri interi:
 vicino validatori correnti | awk '/ <POOL_ID> / {print $ 4}'
 ```
 
-<POOL_ID> - piscina per picchetti
+`<POOL_ID> `- piscina per picchetti
 
-near validators current - visualizza i validatori correnti
+`near validators current` - visualizza i validatori correnti
 
-awk '/<POOL_ID> {print $4}' - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
+`awk '/<POOL_ID> {print $4}'` - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
 
 
 ## Monitoraggio dei futuri validatori tramite RPC
