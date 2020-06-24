@@ -15,7 +15,7 @@ Dove, l' `t0` era attuale e l' `t+n` era del futuro.
 Questo comando richiede che RPC JSON emetta il numero di token:
 
 ```
-curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application / json' https : //rpc.betanet.near.org | jq -c '.result.current_validators [] | seleziona (.account_id | contiene ("<POOL_ID>")) '| jq .stake
+curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.near.org | jq -c '.result.current_validators[] | select(.account_id | contains ("<POOL_ID>"))' | jq .stake
 ```
 
 `"method": "validators"` - metodo
@@ -36,7 +36,7 @@ Rispetto a Near-Shell, questo metodo produce un numero più accurato di token Ne
 Visualizza il numero di token vicini in numeri interi:
 
 ```
-vicino validatori correnti | awk '/ <POOL_ID> / {print $ 4}'
+near validators current | awk '/<POOL_ID>/ {print $4}'
 ```
 
 `<POOL_ID> `- piscina per picchetti
@@ -51,7 +51,7 @@ vicino validatori correnti | awk '/ <POOL_ID> / {print $ 4}'
 Simile ai comandi sopra, usa il comando:
 
 ```
-curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application / json' https : //rpc.betanet.near.org | jq -c '.result.next_validators [] | seleziona (.account_id | contiene ("<POOL_ID>")) '
+curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.near.org | jq -c '.result.next_validators[] | select(.account_id | contains ("<POOL_ID>"))'
 ```
 
 Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e ne salverà il posto come validatore.
@@ -60,7 +60,7 @@ Verranno visualizzate le seguenti informazioni: nome del pool, public_key, dimen
 RPC fornisce dati di un'era precedente per esaminare i dati ricevuti e comprendere il motivo per cui il nodo non si trova negli attuali validatori:
 
 ```
-curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application / json' https : //rpc.betanet.near.org | jq -c '.result.prev_epoch_kickout [] | seleziona (.account_id | contiene ("<POOL_ID>")) '| jq .reason
+curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": [null]}' -H 'Content-Type: application/json' https://rpc.betanet.near.org | jq -c '.result.prev_epoch_kickout[] | select(.account_id | contains ("<POOL_ID>"))' | jq .reason
 ```
 
 La perdita minima consentita per blocco non supera il 10% del previsto!
@@ -77,7 +77,7 @@ Simile ad altri comandi sopra:
 Per vedere se un nodo perderà il suo posto nella prossima era:
 
 ```
-vicino validatori successivo | grep "Kicked out" | grep "<POOL_ID>"
+near validators next | grep "Kicked out" | grep "<POOL_ID>"
 ```
 
 Se l'output non è vuoto, il posto andrà perso.
@@ -85,7 +85,7 @@ Se l'output non è vuoto, il posto andrà perso.
 In alternativa, è possibile utilizzare il comando:
 
 ```
-proposte vicine | grep "Rollover" | grep "<POOL_ID>"
+near proposals | grep "Rollover" | grep "<POOL_ID>"
 ```
 
 Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
