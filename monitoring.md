@@ -31,25 +31,6 @@ near validators current - visualizza i validatori correnti
 awk '/<POOL_ID> {print $4}' - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
 
 
-# Monitoraggio dei futuri validatori con near-shell
-
-Per vedere se un nodo perderà il suo posto nella prossima era:
-
-```
-vicino validatori successivo | grep "Kicked out" | grep "<POOL_ID>"
-```
-
-Se l'output non è vuoto, il posto andrà perso.
-
-In alternativa, è possibile utilizzare il comando:
-
-```
-proposte vicine | grep "Rollover" | grep "<POOL_ID>"
-```
-
-Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
-
-
 # Monitoraggio dei futuri validatori tramite RPC
 
 Simile ai comandi sopra, usa il comando:
@@ -73,6 +54,25 @@ Simile ad altri comandi sopra:
 
 jq -c '.result.prev_epoch_kickout - filtro kickout precedente
 jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
+
+
+# Monitoraggio dei futuri validatori con near-shell
+
+Per vedere se un nodo perderà il suo posto nella prossima era:
+
+```
+vicino validatori successivo | grep "Kicked out" | grep "<POOL_ID>"
+```
+
+Se l'output non è vuoto, il posto andrà perso.
+
+In alternativa, è possibile utilizzare il comando:
+
+```
+proposte vicine | grep "Rollover" | grep "<POOL_ID>"
+```
+
+Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
 
 
 # Monitoraggio del progresso di un'era
