@@ -1,4 +1,6 @@
-# Monitoraggio degli attuali validatori con RPC
+# Monitoraggio del palo
+
+## Monitoraggio degli attuali validatori con RPC
 
 Questo comando richiede che RPC JSON emetta il numero di token:
 
@@ -19,7 +21,7 @@ Rispetto a Near-Shell, questo metodo produce un numero più accurato di token Ne
 È possibile utilizzare un filtro simile per verificare se ci sarà un pool nei seguenti validatori o meno.
 
 
-# Monitoraggio degli attuali validatori con near-shell
+## Monitoraggio degli attuali validatori con near-shell
 
 Visualizza il numero di token vicini in numeri interi:
 
@@ -34,7 +36,7 @@ near validators current - visualizza i validatori correnti
 awk '/<POOL_ID> {print $4}' - filtra per POOL_ID e stampa un numero intero con la bistecca corrente
 
 
-# Monitoraggio dei futuri validatori tramite RPC
+## Monitoraggio dei futuri validatori tramite RPC
 
 Simile ai comandi sopra, usa il comando:
 
@@ -60,7 +62,7 @@ Simile ad altri comandi sopra:
  jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
 
 
-# Monitoraggio dei futuri validatori con near-shell
+## Monitoraggio dei futuri validatori con near-shell
 
 Per vedere se un nodo perderà il suo posto nella prossima era:
 
@@ -79,7 +81,7 @@ proposte vicine | grep "Rollover" | grep "<POOL_ID>"
 Se l'output non è vuoto, <POOL_ID>avrà lo stato di Rollover e salverà il suo posto come validatore
 
 
-# Monitoraggio del progresso di un'era
+## Monitoraggio del progresso di un'era
 
 Determina l'altezza del blocco corrente:
 
@@ -98,7 +100,7 @@ Questa query genererà un numero intero con il numero di blocco da cui è inizia
 Per capire quanti blocchi restano da realizzare entro la fine del periodo, è necessario sottrarre <latest_block_height> dalla <epoch_start_height + 10000> e ottenere il numero di blocchi che devono ancora essere prodotte al fine di completare l'epoca.
 
 
-# Posiziona il monitoraggio dei prezzi
+## Posiziona il monitoraggio dei prezzi
 
 Per misurare o calcolare il costo di un luogo per diventare un validatore, puoi usare, ad esempio, Near-Shell:
 
