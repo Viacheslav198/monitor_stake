@@ -7,8 +7,11 @@ curl -d '{"jsonrpc": "2.0", "method": "validators", "id": "dontcare", "params": 
 ```
 
 "method": "validators" - metodo
+
 jq -c '.result.current_validators - visualizza i validatori correnti
+
 select(.account_id | contains ("<POOL_ID>"))' - filtraggio per <POOL_ID>
+
 jq .stake - filtra nuovamente i risultati tramite jq e accetta solo la condivisione totale in YoctoNEAR
 
 Rispetto a Near-Shell, questo metodo produce un numero più accurato di token Near nel pool. <POOL_ID>
@@ -52,8 +55,9 @@ La perdita minima consentita per blocco non supera il 10% del previsto!
 
 Simile ad altri comandi sopra:
 
-jq -c '.result.prev_epoch_kickout - filtro kickout precedente
-jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
+ jq -c '.result.prev_epoch_kickout - filtro kickout precedente
+ 
+ jq .reason - filtra il motivo, ad esempio un numero insufficiente di token per una bistecca o un numero insufficiente di blocchi generati
 
 
 # Monitoraggio dei futuri validatori con near-shell
